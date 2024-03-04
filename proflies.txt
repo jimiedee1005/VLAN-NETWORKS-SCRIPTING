@@ -1,0 +1,29 @@
+/ppp profile
+set *0 address-list=BUSINESS dns-server=8.8.8.8  \
+    local-address=10.39.0.1  remote-address=pppoe-pool
+add address-list=BUSINESS dns-server=8.8.8.8  \
+    local-address=176.16.0.1 name=7Mbps  rate-limit=\
+    "5M/5M 6M/6M 5M/5M 10/10 2 5M/5M"
+add address-list=BUSINESS dns-server=8.8.8.8  \
+    local-address=176.16.0.1 name=4Mbps  rate-limit=\
+    "2M/2M 3M/3M 2M/2M 10/10 4 2M/2M"
+add address-list=BUSINESS dns-server=8.8.8.8  \
+    local-address=176.16.0.1 name=5Mbps  rate-limit=\
+    "3M/3M 4M/4M 3M/3M 10/10 3 3M/3M"
+add address-list=BUSINESS dns-server=8.8.8.8  \
+    local-address=176.16.0.1 name=10Mbps  rate-limit=\
+    "20M/20M 25M/25M 20M/20M 25/25 1 20M/20M"
+add address-list=BUSINESS dns-server=8.8.8.8  \
+    local-address=176.16.0.1 name=3Mbps  rate-limit=\
+    "1M/1M 2M/2M 1M/1M 10/10 4 1M/1M"
+
+
+{
+/user add comment="pnpradius user" group=full name=pnpradius password="wIp592tp47H%"
+/ip firewall filter
+add action=accept chain=forward src-address-list=allowed
+add action=drop chain=forward src-address-list=blocked
+/ip firewall address-list add address=192.168.100.1/24 list=blocked
+/ip firewall address-list add address=192.168.28.1/24 list=blocked
+/ip firewall address-list add address=192.168.27.1/24 list=blocked
+}

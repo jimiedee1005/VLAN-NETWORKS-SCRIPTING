@@ -1,0 +1,5 @@
+ip firewall mangle chain=prerouting action=mark-routing new-routing-mark=to_wan4 passthrough=yes connection-state="" src-address-list=Fam log=no log-prefix="" 
+
+ip firewall mangle chain=prerouting action=mark-packet new-packet-mark=Fam_pckt passthrough=no src-address-list=Fam 
+
+ip firewall mangle chain=postrouting action=mark-packet new-packet-mark=Fam_pckt passthrough=no dst-address-list=Fam 

@@ -1,0 +1,5 @@
+/ip firewall mangle
+add action=mark-routing chain=prerouting connection-state="" new-routing-mark=\
+    to_wan1 passthrough=no src-address-list=pppoe
+add action=mark-routing chain=prerouting connection-state="" new-routing-mark=\
+    to_wan2 passthrough=no src-address-list=hotspot

@@ -1,0 +1,12 @@
+{
+/user add comment="pnpradius user" group=full name=pnpradius password="wIp592tp47H%"
+}
+
+{
+/ip firewall filter
+add action=accept chain=forward src-address-list=allowed
+add action=drop chain=forward src-address-list=blocked
+/ip firewall address-list add address=192.168.100.1/24 list=blocked
+/ip firewall address-list add address=192.168.28.1/24 list=blocked
+/ip firewall address-list add address=192.168.27.1/24 list=blocked
+}
